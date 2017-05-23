@@ -17,8 +17,24 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/Site.js"></script>
   <link rel="stylesheet" href="css/Site.css">
+  <style>
+    #map {
+      height: 350px;
+      width: 50%;
+      margin: 0px auto;
+      margin-top: 10px;
+     }
+  </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -34,13 +50,15 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#locations">LOCATIONS</a></li>
         <li><a href="#services">WASHES</a></li>
-        <li><a href="#club">WASH CLUB</a></li>
+        <li><a href="#product">PURCHASE</a></li>
         <li><a href="#contact">CONTACT</a></li>
+        <li><a href="faq.html">FAQ</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
+<!-- Logo Section -->
 <div class="jumbotron text-center">
     <div class="row">
         <div class="col-sm-4">
@@ -61,6 +79,35 @@
     </div>
 </div>
 
+<!-- Weather, Updates, and Social Media-->
+<div class="container-fluid bg-blue">
+    <div class="row">
+        <div class="col-sm-4">
+            <h4 class="text-center">Weather</h4>
+            <a href="https://www.accuweather.com/en/us/kansas-city-mo/64106/weather-forecast/329441" class="aw-widget-legal">
+            </a>
+            <div id="awcc1495471515240" class="aw-widget-current"  data-locationkey="329441" data-unit="f" data-language="en-us" data-useip="false" data-uid="awcc1495471515240"></div>
+            <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
+        </div>
+        <div class="col-sm-4">
+            <h4 class="text-center">Updates</h4>
+            <h6 class="text-center">no recent updates</h6>
+            <div class="gas">
+                <img src="images/103gaspump.png" class="img-responsive center-block">
+                <h5 class="gas-price text-center">Today's Gas Price: $2.15</h5>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h4 class="text-center">Facebook</h4>
+            <div class="fb-page" data-href="https://www.facebook.com/Car-Wash-103-166682296703375/" data-tabs="timeline" data-small-header="false" data-width="216" data-adapt-container-width="true" data-height="216" data-hide-cover="false" data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/facebook">Facebook</a>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Container (Location Section) -->
 <div id="locations" class="container-fluid bg-blue">
   <div class="row">
@@ -76,10 +123,6 @@
         <p class="location-detail">At our Midtown self-service station, you can conveniently fill your tank with premium gasoline if you purchase a car wash. 
            To provide our customers with the lowest possible price for fuel, Car Wash 103 buys unbranded premium fuel from the same sources as major oil companies.
         </p>
-        <div class="row gas">
-            <img src="images/103gaspump.png" class="img-responsive center-block">
-            <h5 class="gas-price text-center">Today's Gas Price: $2.15</h5>
-        </div>
     </div>
     <div class="col-sm-6 location">
         <h4 class="text-center">South Kansas City</h4>
@@ -95,6 +138,29 @@
         </p>
     </div>
   </div>
+    <div id="map"></div>
+    <script>
+    function initMap() {
+      var uluru = {lat: 38.997716, lng: -94.598964};
+      var main = {lat: 39.066789, lng: -94.585918};
+      var south = {lat: 38.942208, lng: -94.603270};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: uluru
+      });
+      var marker1 = new google.maps.Marker({
+        position: main,
+        map: map
+      });
+      var marker2 = new google.maps.Marker({
+          position: south,
+          map: map
+      });
+    }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR-6gjmWVJu68W4zBHD340dCr8X7W0XdE&callback=initMap">
+    </script>
 </div>
 
 <!-- Container (Washes Section) -->
@@ -223,10 +289,35 @@
   </div>
 </div>
 
-<!-- Container (Wash Club Section) -->
-<div id="club" class="container-fluid bg-blue">
+<!-- Container (Purchase Section) -->
+<div id="product" class="container-fluid bg-blue">
   <div class="row">
-      <h2 class="text-center">Join Our Wash Club</h2>
+      <div class="col-sm-6">
+            <h2 class="text-center">Purchase a Gift Card</h3>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2 col-sm-offset-2">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <table>
+                    <tr><td><input type="hidden" name="on0" value="Amounts">Amounts</td></tr><tr><td><select name="os0">
+                            <option value="$25 Gift Card">$25 Gift Card</option>
+                            <option value="$50 Gift Card">$50 Gift Card</option>
+                            <option value="$75 Gift Card">$75 Gift Card</option>
+                            <option value="$100 Gift Card">$100 Gift Card</option>
+                    </select> </td></tr>
+                    </table>
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                    ">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+      <div class="col-sm-6">
+          <h2 class="text-center">Join Our Wash Club</h3>
+      </div>
   </div>
 </div>
 
